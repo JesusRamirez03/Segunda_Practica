@@ -1,17 +1,56 @@
+import java.util.Scanner;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ArregloLetras arregloLetras = new ArregloLetras();
+        Scanner scanner = new Scanner(System.in);
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        do {
+            System.out.println("------------ Menu ------------");
+            System.out.println("1. Inicializar / Borrar arreglo");
+            System.out.println("2. Mostrar arreglo");
+            System.out.println("3. Buscar");
+            System.out.println("4. Insertar");
+            System.out.println("5. Eliminar");
+            System.out.println("6. Modificar");
+            System.out.println("7. Creditos");
+            System.out.println("8. Salir");
+            System.out.println("Seleccione una opcion: ");
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+            int opcion = scanner.nextInt();
+
+            switch (opcion){
+                case 1:
+                    arregloLetras.IniciarArreglo();
+                    break;
+                case 2:
+                    arregloLetras.MostrarArreglo();
+                    break;
+                case 3:
+                    arregloLetras.Buscar();
+                    break;
+                case 4:
+                    arregloLetras.Insertar();
+                    break;
+                case 5:
+                    arregloLetras.Eliminar();
+                    break;
+                case 6:
+                    arregloLetras.Modificar();
+                    break;
+                case 7:
+                    arregloLetras.MostrarCreditos();
+                    break;
+                case 8:
+                    System.out.println("Saliendo del programa");
+                    return;
+                default:
+                    System.out.println("Opcion no valida.");
+                    break;
+            }
+
+        } while (true);
     }
 }

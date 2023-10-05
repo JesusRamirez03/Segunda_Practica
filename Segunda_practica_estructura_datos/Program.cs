@@ -31,18 +31,25 @@ namespace Segunda_practica_estructura_datos
                 switch (opcion)
                 {
                     case 1:
+                        arregloLetras.InicializarArreglo();
                         break;
                     case 2:
+                        arregloLetras.MostrarArreglo();
                         break;
                     case 3:
+                        arregloLetras.Buscar();
                         break;
                     case 4:
+                        arregloLetras.Insertar();
                         break;
                     case 5:
+                        arregloLetras.Eliminar();
                         break;
                     case 6:
+                        arregloLetras.Modificar();
                         break;
                     case 7:
+                        arregloLetras.MostrarCreditos();
                         break;
                     case 8:
                         salir = true;

@@ -117,11 +117,10 @@ namespace Segunda_practica_estructura_datos
         public void MostrarCreditos()
         {
             Console.WriteLine("Créditos:");
-            Console.WriteLine("Materia: [Nombre de la materia]");
+            Console.WriteLine("Materia: Estructura de datos");
             Console.WriteLine("Integrantes del equipo:");
-            Console.WriteLine("[Nombre del integrante 1] - [Matrícula 1]");
-            Console.WriteLine("[Nombre del integrante 2] - [Matrícula 2]");
-            // Agrega más nombres y matrículas si es necesario
+            Console.WriteLine("Nombre: Marco Antonio Chavez Baltierrez || 2C || 22170149");
+            Console.WriteLine("Nombre: Jesus Alberto Ramirez Gonzalez  || 2C || 22170147");
         }
     }
 }
