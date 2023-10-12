@@ -1,139 +1,85 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ArregloLetras {
-    private final char[] arreglo = new char[20];
-    private int nElementos = 0;
+    private ArrayList<Character> letras = new ArrayList<>();
 
-    public void IniciarArreglo() {
-        for (int i = 0; i < arreglo.length; i++) {
-            arreglo[i] = '\0';
-        }
-        nElementos = 0;
-        System.out.println("Arreglo inicializado.");
+    public void inicializarArreglo() {
+        letras.clear();
+        System.out.println("El arreglo ha sido inicializado.");
     }
 
-    public void MostrarArreglo() {
-        System.out.println("Elementos del arreglo:");
-        for (int i = 0; i < nElementos; i++) {
-            System.out.print(arreglo[i] + " ");
-        }
-        System.out.println();
-    }
-
-    public void Buscar() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese la letra a buscar: ");
-        char letra = leerLetra(scanner);
-
-        int indice = -1;
-        for (int i = 0; i < nElementos; i++) {
-            if (Character.toLowerCase(arreglo[i]) == Character.toLowerCase(letra)) {
-                indice = i;
-                break;
-            }
-        }
-
-        if (indice != -1) {
-            System.out.println("'" + letra + "' encontrado en la posición " + indice + ".");
+    public void mostrarArreglo() {
+        if (letras.isEmpty()) {
+            System.out.println("El arreglo está vacío.");
         } else {
-            System.out.println("'" + letra + "' no encontrado en el arreglo.");
+            System.out.println("Elementos en el arreglo: " + letras);
         }
     }
 
-    public void Insertar() {
-        Scanner scanner = new Scanner(System.in);
-        if (nElementos == arreglo.length) {
-            System.out.println("El arreglo está lleno.");
-            return;
-        }
-
-        System.out.print("Ingrese la letra a insertar: ");
-        char letra = leerLetra(scanner);
-
-        int indice = 0;
-        while (indice < nElementos && Character.toLowerCase(arreglo[indice]) < Character.toLowerCase(letra)) {
-            indice++;
-        }
-
-        for (int i = nElementos; i > indice; i--) {
-            arreglo[i] = arreglo[i - 1];
-        }
-
-        arreglo[indice] = letra;
-        nElementos++;
-        System.out.println("'" + letra + "' insertado en la posición " + indice + ".");
-    }
-
-    public void Eliminar() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese la letra a eliminar: ");
-        char letra = leerLetra(scanner);
-
-        int indice = -1;
-        for (int i = 0; i < nElementos; i++) {
-            if (Character.toLowerCase(arreglo[i]) == Character.toLowerCase(letra)) {
-                indice = i;
-                break;
-            }
-        }
-
-        if (indice != -1) {
-            for (int i = indice; i < nElementos - 1; i++) {
-                arreglo[i] = arreglo[i + 1];
-            }
-            arreglo[nElementos - 1] = '\0';
-            nElementos--;
-            System.out.println("'" + letra + "' eliminado de la posición " + indice + ".");
+    public void buscarLetra(char letra) {
+        int index = letras.indexOf(letra);
+        if (index != -1) {
+            System.out.println("La letra '" + letra + "' se encuentra en la posición " + (index + 1) + " del arreglo.");
         } else {
-            System.out.println("'" + letra + "' no encontrado en el arreglo.");
+            System.out.println("La letra '" + letra + "' no se encuentra en el arreglo.");
         }
     }
 
-    public void Modificar() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese la letra a modificar: ");
-        char letra = leerLetra(scanner);
+    public void insertarLetra(char letra) {
+        if (letras.size() < 20) {
+            if (Character.isLetter(letra)) {
+                int index = 0;
+                char letraMayuscula = Character.toUpperCase(letra);
 
-        int indice = -1;
-        for (int i = 0; i < nElementos; i++) {
-            if (Character.toLowerCase(arreglo[i]) == Character.toLowerCase(letra)) {
-                indice = i;
-                break;
-            }
-        }
+                while (index < letras.size()) {
+                    char current = letras.get(index);
+                    char currentMayuscula = Character.toUpperCase(current);
 
-        if (indice != -1) {
-            System.out.print("Ingrese la nueva letra: ");
-            char nuevaLetra = leerLetra(scanner);
-            arreglo[indice] = nuevaLetra;
-            System.out.println("'" + letra + "' modificado a '" + nuevaLetra + "' en la posición " + indice + ".");
-
-            for (int i = 0; i < nElementos - 1; i++) {
-                for (int j = 0; j < nElementos - i - 1; j++) {
-                    if (Character.toLowerCase(arreglo[j]) > Character.toLowerCase(arreglo[j + 1])) {
-                        char temp = arreglo[j];
-                        arreglo[j] = arreglo[j + 1];
-                        arreglo[j + 1] = temp;
+                    if (letraMayuscula < currentMayuscula || (letraMayuscula == currentMayuscula && letra < current)) {
+                        break;
                     }
+                    index++;
                 }
+
+                letras.add(index, letra);
+                System.out.println("La letra '" + letra + "' ha sido insertada en la posición " + index + ".");
+            } else {
+                System.out.println("No se puede insertar caracteres especiales en el arreglo.");
             }
         } else {
-            System.out.println("'" + letra + "' no encontrado en el arreglo.");
+            System.out.println("El arreglo está lleno, no se puede insertar más elementos.");
         }
     }
 
-    private char leerLetra(Scanner scanner) {
-        String input;
-        char letra;
-        do {
-            input = scanner.nextLine();
-            if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
-                System.out.println("Por favor, ingrese una letra válida.");
-                System.out.print("Ingrese la letra: ");
+
+
+    public void eliminarLetra(char letra) {
+        int index = letras.indexOf(letra);
+        if (index != -1) {
+            letras.remove(index);
+            System.out.println("La letra '" + letra + "' ha sido eliminada de la posición " + (index + 1) + ".");
+        } else {
+            System.out.println("La letra '" + letra + "' no se encuentra en el arreglo.");
+        }
+    }
+
+    public void modificarLetra(char letra, char nuevaLetra) {
+        if (Character.isLetter(letra) && Character.isLetter(nuevaLetra)) {
+            int index = letras.indexOf(letra);
+            if (index != -1) {
+                letras.remove(index);
+
+                insertarLetra(nuevaLetra);
+
+                System.out.println("La letra '" + letra + "' ha sido reemplazada por '" + nuevaLetra + "' y el arreglo ha sido reordenado.");
+            } else {
+                System.out.println("La letra '" + letra + "' no se encuentra en el arreglo.");
             }
-        } while (input.length() != 1 || !Character.isLetter(input.charAt(0)));
-        letra = input.charAt(0);
-        return letra;
+        } else {
+            System.out.println("No se pueden utilizar caracteres especiales en la modificación.");
+        }
     }
 
     public void MostrarCreditos(){

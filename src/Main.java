@@ -23,31 +23,42 @@ public class Main {
 
             switch (opcion){
                 case 1:
-                    arregloLetras.IniciarArreglo();
+                    arregloLetras.inicializarArreglo();
                     break;
                 case 2:
-                    arregloLetras.MostrarArreglo();
+                    arregloLetras.mostrarArreglo();
                     break;
                 case 3:
-                    arregloLetras.Buscar();
+                    System.out.print("Ingrese la letra a buscar: ");
+                    char letraBusqueda = scanner.next().charAt(0);
+                    arregloLetras.buscarLetra(letraBusqueda);
                     break;
                 case 4:
-                    arregloLetras.Insertar();
+                    System.out.print("Ingrese la letra a insertar: ");
+                    char letraInsercion = scanner.next().charAt(0);
+                    arregloLetras.insertarLetra(letraInsercion);
                     break;
                 case 5:
-                    arregloLetras.Eliminar();
+                    System.out.print("Ingrese la letra a eliminar: ");
+                    char letraEliminar = scanner.next().charAt(0);
+                    arregloLetras.eliminarLetra(letraEliminar);
                     break;
                 case 6:
-                    arregloLetras.Modificar();
+                    System.out.print("Ingrese la letra a modificar: ");
+                    char letraModificar = scanner.next().charAt(0);
+                    System.out.print("Ingrese la nueva letra: ");
+                    char nuevaLetra = scanner.next().charAt(0);
+                    arregloLetras.modificarLetra(letraModificar, nuevaLetra);
                     break;
                 case 7:
                     arregloLetras.MostrarCreditos();
                     break;
                 case 8:
-                    System.out.println("Saliendo del programa");
-                    return;
+                    System.out.println("Gracias por usar el programa. ¡Hasta luego!");
+                    scanner.close();
+                    System.exit(0);
                 default:
-                    System.out.println("Opcion no valida.");
+                    System.out.println("Opción no válida. Intente nuevamente.");
                     break;
             }
 
